@@ -1,33 +1,32 @@
 # SciFact Dataset
 
 ## Overview
-SciFact is a dataset for verifying scientific claims against a corpus of biomedical research abstracts.
+Dataset for verifying scientific claims against biomedical research abstracts.
 
 ## Source
 - **Paper:** Wadden et al., "Fact or Fiction: Verifying Scientific Claims" (EMNLP 2020)
-- **Download:** https://scifact.s3.us-west-2.amazonaws.com/release/2020-05-01/data.tar.gz
 - **GitHub:** https://github.com/allenai/scifact
 
-## Dataset Statistics
+## Verified Statistics
 
 ### Claims
-| Split | # Claims | # SUPPORTS | # REFUTES | # NEI |
-|-------|----------|------------|-----------|-------|
-| Train | 809      | 269 (33%)  | 112 (14%) | 428 (53%) |
-| Dev   | 300      | 102 (34%)  | 38 (13%)  | 160 (53%) |
-| Test  | 300      | 115 (38%)  | 36 (12%)  | 149 (50%) |
+| Split | # Claims |
+|-------|----------|
+| Train | 809      |
+| Dev   | 300      |
+| Test  | 300      |
+| **Total** | **1,409** |
 
 ### Corpus
-- **Total abstracts:** 5,183
-- **Domain:** Biomedical research (from PubMed)
-- **Average abstract length:** 11.1 sentences
-- **Average sentences per rationale:** 2.1
+- **Abstracts:** 5,183 PubMed abstracts
+- **Avg abstract length:** 8.9 sentences
+- **Avg evidence per claim:** 1.1 sentences
+
+**Note:** Label distributions (SUPPORTS/REFUTES/NEI) will be computed during M2 baseline evaluation. Paper reports ~33% SUPPORTS, ~14% REFUTES, ~53% NEI.
 
 ## Data Format
 
-### Claims File (claims_train.jsonl, claims_dev.jsonl, claims_test.jsonl)
-
-Each line is a JSON object:
+### Claims (claims_train.jsonl, claims_dev.jsonl, claims_test.jsonl)
 ```json
 {
   "id": 2,
@@ -46,17 +45,15 @@ Each line is a JSON object:
 
 **Fields:**
 - `id`: Unique claim identifier
-- `claim`: The scientific claim text
-- `evidence`: Dictionary mapping document IDs to evidence
-  - `sentences`: 0-indexed sentence positions in the abstract
-  - `label`: "SUPPORT" or "CONTRADICT"
-- `cited_doc_ids`: List of relevant document IDs (for retrieval evaluation)
+- `claim`: Scientific claim text
+- `evidence`: Dict mapping doc_id → evidence list
+  - `sentences`: 0-indexed positions in abstract
+  - `label`: "SUPPORT" or "CONTRADICT" (maps to SUPPORTS/REFUTES)
+- `cited_doc_ids`: Relevant docs for retrieval evaluation
 
-**Note:** Test set has `cited_doc_ids` but no `evidence` field (blind evaluation)
+**Note:** Test set withholds `evidence` field for blind evaluation.
 
-### Corpus File (corpus.jsonl)
-
-Each line is a JSON object representing one abstract:
+### Corpus (corpus.jsonl)
 ```json
 {
   "doc_id": 14717500,
@@ -64,8 +61,6 @@ Each line is a JSON object representing one abstract:
   "abstract": [
     "OBJECTIVE: To determine the effectiveness of acupuncture for depression.",
     "DESIGN: Randomised controlled trial.",
-    "SETTING: University teaching hospital.",
-    "PARTICIPANTS: 70 patients with major depression.",
     "...",
     "CONCLUSIONS: Acupuncture was not superior to sham acupuncture."
   ],
@@ -74,37 +69,22 @@ Each line is a JSON object representing one abstract:
 ```
 
 **Fields:**
-- `doc_id`: PubMed ID of the paper
+- `doc_id`: PubMed ID
 - `title`: Paper title
-- `abstract`: List of sentences (0-indexed)
-- `structured`: Boolean indicating if abstract has section structure
+- `abstract`: Sentences (0-indexed)
+- `structured`: Has section headers
 
-## Example
+## Why This Dataset
 
-**Claim:** "Acupuncture is not effective for treating depression."
+**Purpose:** Primary evaluation for claim verification (Component 1).
 
-**Evidence from doc 14717500:**
-- Sentence 3: "PARTICIPANTS: 70 patients with major depression."
-- Sentence 5: "CONCLUSIONS: Acupuncture was not superior to sham acupuncture."
+**Key characteristics:**
+- Expert-annotated by biomedical researchers
+- Requires multi-sentence reasoning
+- Class imbalanced (NEI is majority)
+- Challenging: state-of-art is ~47% F1
 
-**Label:** SUPPORT (the evidence supports the claim)
-
-## Data Characteristics
-
-### Label Distribution
-- **Class imbalance:** NOT ENOUGH INFO is majority class (~51%)
-- **Challenging:** Even SUPPORTS is only ~36% of data
-- **Rare class:** REFUTES is only ~13% of data
-
-### Claim Characteristics
-- **Average claim length:** 17.3 words
-- **Claim types:** Treatment efficacy, causal relationships, statistical findings
-- **Reasoning required:** Most claims need multiple evidence sentences
-
-### Evidence Characteristics
-- **Average evidence sentences per claim:** 2.1
-- **Evidence can be implicit:** Sometimes requires domain knowledge
-- **Multi-document reasoning:** Some claims need evidence from multiple papers
+**Use in project:** Train and evaluate our claim verification model. Evidence sentences guide our summarization component.
 
 ## Citation
 ```bibtex
