@@ -1,7 +1,7 @@
 """
 Verify SciFact & PubMed RCT statistics.
 Run from repo root:
-    python code/data_preparation/verify_data_stats.py
+    python src/data_preparation/verify_data_stats.py
 """
 import sys
 from pathlib import Path
@@ -9,14 +9,14 @@ from collections import Counter
 
 # ----------------------------------------------------------------------
 # Add repo root to path
-REPO_ROOT = Path(__file__).resolve().parents[2]  # code/data_preparation → repo root
+REPO_ROOT = Path(__file__).resolve().parents[2]  # src/data_preparation → repo root
 sys.path.insert(0, str(REPO_ROOT / "code"))
 
 try:
     from common.data_utils import load_claims, load_corpus
 except ImportError as e:
     print("ImportError: Cannot find common.data_utils")
-    print("   Make sure code/common/data_utils.py exists and defines load_claims() and load_corpus()")
+    print("   Make sure src/common/data_utils.py exists and defines load_claims() and load_corpus()")
     sys.exit(1)
 # ----------------------------------------------------------------------
 
