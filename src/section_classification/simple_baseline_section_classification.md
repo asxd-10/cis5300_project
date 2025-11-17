@@ -20,11 +20,13 @@ cis5300_project/src/section_classification/simple_baseline_section_classificatio
 
 Key features:
 
-1. Loads training and test data from tab-separated files (`LABEL<TAB>sentence`).  
-2. Finds the **majority label** in the training data.  
-3. Predicts the **majority label** for all test sentences.  
-4. Computes **accuracy** and **Macro-F1**.  
-5. Saves predictions to a file: `baseline_predictions.txt`.
+1. Load and preprocess the PubMed 200K RCT dataset.
+2. Fit a TF-IDF vectorizer (not used for predictions, part of baseline pipeline).
+3. Determine the **majority label** from the training set.
+4. Predict the majority label for all sentences in the dev and test sets.
+5. Evaluate predictions using **Accuracy** and **Macro-F1**.
+
+> This baseline is intentionally weak to provide a reference point for stronger models.
 
 ---
 
