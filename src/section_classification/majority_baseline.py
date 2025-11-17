@@ -43,7 +43,7 @@ if __name__ == "__main__":
     print(f"Accuracy: {acc:.4f}")
     print(f"Macro-F1: {macro_f1:.4f}")
 
-output_path = "majority_baseline_predictions.txt"
+output_path = "baseline_predictions.txt"
 with open(output_path, "w") as f:
     for p in pred:
         f.write(p + "\n")
