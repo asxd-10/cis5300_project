@@ -53,16 +53,24 @@ How to Run
 
 From the project root, run:
 
+For Dev Set:
+```bash
+python src/evaluation/score_section_classification.py \
+    data/pubmed_rct/dev.txt \
+    simple_baseline_dev_predictions.txt
+```
+For Test Set:
 ```bash
 python src/evaluation/score_section_classification.py \
     data/pubmed_rct/test.txt \
-    data/pubmed_rct/baseline_predictions.txt
+    simple_baseline_test_predictions.txt
 ```
+
 Arguments:
 
-test.txt → gold labels
+dev.txt / test.txt → gold labels
 
-baseline_predictions.txt → model predictions
+simple_baseline_dev_predictions.txt / simple_baseline_test_predictions.txt → model predictions
 
 ```
 Example Output
