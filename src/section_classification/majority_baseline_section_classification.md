@@ -36,6 +36,7 @@ From the **project root**, execute:
 python src/section_classification/majority_baseline.py \
     data/pubmed_rct/train.txt \
     data/pubmed_rct/test.txt
+```
 
 train.txt → training data
 
@@ -45,8 +46,10 @@ baseline_predictions.txt
 
 This file contains one predicted label per line for the test set.
 
+```
 Example Output
 Majority label: METHODS
 Accuracy: 0.3298
 Macro-F1: 0.0992
 Predictions saved to baseline_predictions.txt
+```
