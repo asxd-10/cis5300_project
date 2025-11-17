@@ -36,5 +36,15 @@ if __name__ == "__main__":
     pred = majority_baseline_predict(test_data, majority_label)
 
     # Score
+    acc = accuracy(gold, pred)
+    macro_f1 = f1_score(gold, pred, average="macro")
+    
     print("Majority label:", majority_label)
-    print("Accuracy:", accuracy(gold, pred))
+    print(f"Accuracy: {acc:.4f}")
+    print(f"Macro-F1: {macro_f1:.4f}")
+
+output_path = "baseline_predictions.txt"
+with open(output_path, "w") as f:
+    for p in pred:
+        f.write(p + "\n")
+print(f"Predictions saved to {output_path}")
