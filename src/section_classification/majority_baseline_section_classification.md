@@ -11,11 +11,10 @@ The baseline predicts the **majority class** from the training data for all sent
 
 ---
 
-## Code
+## Code Location
 
-The baseline is implemented in `majority_baseline.py`:
+The baseline is implemented in:
 
-```bash
 cis5300_project/src/section_classification/majority_baseline.py
 
 
@@ -37,3 +36,17 @@ From the **project root**, execute:
 python src/section_classification/majority_baseline.py \
     data/pubmed_rct/train.txt \
     data/pubmed_rct/test.txt
+
+train.txt → training data
+
+test.txt → test data
+The script will automatically create:
+baseline_predictions.txt
+
+This file contains one predicted label per line for the test set.
+
+Example Output
+Majority label: METHODS
+Accuracy: 0.3298
+Macro-F1: 0.0992
+Predictions saved to baseline_predictions.txt
