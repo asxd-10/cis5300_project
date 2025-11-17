@@ -12,9 +12,7 @@ We use two standard metrics:
 
 Accuracy measures the fraction of correctly predicted labels:
 
-\[
-\text{Accuracy} = \frac{\text{Number of correct predictions}}{\text{Total number of predictions}}
-\]
+$$\text{Accuracy} = \frac{\text{Number of correct predictions}}{\text{Total number of predictions}}$$
 
 - **Range:** 0 to 1  
 - **Interpretation:** Higher accuracy indicates better overall prediction performance.
@@ -23,15 +21,11 @@ Accuracy measures the fraction of correctly predicted labels:
 
 Macro-F1 calculates the **F1 score for each class independently** and then averages them. It accounts for **class imbalance** and gives equal weight to all classes:
 
-\[
-\text{Macro-F1} = \frac{1}{C} \sum_{i=1}^{C} F1_i
-\]
+$$\text{Macro-F1} = \frac{1}{C} \sum\_{i=1}^{C} F1\_i $$
 
-Where \(C\) is the number of classes and \(F1_i\) is the F1 score for class \(i\):
+Where $C$ is the number of classes and $F1_i$ is the F1 score for class $i$: 
 
-\[
-F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
-\]
+$$F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}} $$
 
 - **Range:** 0 to 1  
 - **Interpretation:** Higher Macro-F1 indicates better performance across all classes, even if classes are imbalanced.
