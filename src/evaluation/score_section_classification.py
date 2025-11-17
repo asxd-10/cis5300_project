@@ -25,7 +25,7 @@ def load_labels(path):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python score.py <gold_file> <pred_file>")
+        print("Usage: python score_section_clasification.py <gold_file> <pred_file>")
         sys.exit(1)
 
     gold_path = sys.argv[1]
