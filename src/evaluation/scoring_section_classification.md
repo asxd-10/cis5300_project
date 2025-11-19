@@ -37,7 +37,7 @@ $$F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \t
 The evaluation script `score_section_classification.py` computes **accuracy** and **Macro-F1** given:
 
 1. A **gold standard file** (test or dev data)  
-2. A **predictions file** (produced by any model)
+2. A **predictions file** (only for simple(majority) baseline model)
 
 ```bash
 cis5300_project/src/evaluation/score_section_classification.py
