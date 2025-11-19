@@ -29,12 +29,14 @@ The model consists of:
   Captures dependency between adjacent labels.
 
 ### **Model Printout**
-BiLSTM_CRF(
-(embedding): Embedding(69734, 100, padding_idx=0)
-(lstm): LSTM(100, 128, batch_first=True, bidirectional=True)
-(hidden2tag): Linear(in_features=256, out_features=5, bias=True)
-(crf): CRF(num_tags=5)
+```
+SentenceBiLSTM_CRF(
+  (embedding): Embedding(69734, 100, padding_idx=0)
+  (lstm): LSTM(100, 128, batch_first=True, bidirectional=True)
+  (hidden2tag): Linear(in_features=256, out_features=5, bias=True)
+  (crf): CRF(num_tags=5)
 )
+```
 
 
 ---
@@ -133,7 +135,7 @@ Strong baseline macro-F1:
 ## **Notebook Location**
 
 The full implementation is available here:
-cis5300_project/notebooks/BILSTM_section_classification.ipynb
+` cis5300_project/notebooks/BILSTM_section_classification.ipynb`
 
 ## How to run it:
 
