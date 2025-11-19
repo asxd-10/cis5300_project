@@ -98,7 +98,7 @@ We computed:
 
 ## **5. Baseline Results**
 
-=== Detailed Classification Report for Test set===
+Detailed Classification Report for Test set
 
 | Class            | Precision | Recall | F1-Score | Support |
 | ---------------- | --------- | ------ | -------- | ------- |
@@ -112,8 +112,7 @@ We computed:
 | **Weighted Avg** | 0.8899    | 0.8885 | 0.8888   | 30135   |
 
 
-Dev Set Results
-=== Detailed Classification Report for Dev Set===
+Detailed Classification Report for Dev Set
 
 | Class            | Precision | Recall | F1-Score | Support |
 | ---------------- | --------- | ------ | -------- | ------- |
