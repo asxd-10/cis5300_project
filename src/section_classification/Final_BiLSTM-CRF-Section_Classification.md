@@ -1,10 +1,10 @@
 # Strong Baseline + Extended Model: BiLSTM-CRF for Scientific Section Classification.
 
-We implement a **BiLSTM-CRF model** for sentence-level section classification on the **PubMed 200K RCT dataset**, following and extending the architecture originally used in Dernoncourt & Lee (2017). The baseline uses a 1-layer BiLSTM, while our extended model increases embedding capacity, introduces regularization, deepens the recurrent stack, and applies improved optimization strategies. These enhancements result in **substantial performance gains** across all metrics.
+We implement a **BiLSTM-CRF model** for sentence-level section classification on the **PubMed 200K RCT dataset**, following and extending the architecture originally used in Dernoncourt & Lee (2017). The Strong baseline uses a 1-layer BiLSTM, while our extended model increases embedding capacity, introduces regularization, deepens the recurrent stack, and applies improved optimization strategies. These enhancements result in **substantial performance gains** across all metrics.
 
 ---
 
-## 1. Baseline Model Architecture
+## 1. Strong Baseline Model Architecture
 
 ### **BiLSTM-CRF**
 The model consists of:
