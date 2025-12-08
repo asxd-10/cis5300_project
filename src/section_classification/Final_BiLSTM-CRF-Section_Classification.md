@@ -73,7 +73,7 @@ SentenceBiLSTM_CRF(
 | **Dropout** | 0 | **0.35 (embedding + LSTM)** |
 | **Extra Dropout Layer** | No | **Yes** |
 | **Optimizer** | Adam | Adam |
-| **Learning Rate** | 0.001 fixed | **0.001 + ReduceLROnPlateau** |
+| **Learning Rate** | 0.001 fixed | **0.001 + (0.0005) ReduceLROnPlateau** |
 | **LR Scheduler** | No | **Yes (factor=0.5, patience=3)** |
 | **Gradient Clipping** | No | **Yes (max_norm=1.0)** |
 | **Early Stopping** | No | **Yes (patience=3)** |
