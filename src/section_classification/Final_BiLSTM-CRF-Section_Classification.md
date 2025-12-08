@@ -6,6 +6,18 @@ We implement a **BiLSTM-CRF model** for sentence-level section classification on
 
 ## 1. Baseline Model Architecture
 
+### **BiLSTM-CRF**
+The model consists of:
+
+- **Embedding Layer**  
+  Converts token IDs into dense vectors (100-dim).
+- **Bidirectional LSTM**  
+  Hidden size: 128 per direction → 256 combined.
+- **Linear Classifier**  
+  Maps BiLSTM outputs to tag logits.
+- **CRF Layer**  
+  Captures dependency between adjacent labels.
+
 The original baseline uses the following components:
 
 * **Embedding Layer:** 100-dim embeddings
@@ -67,6 +79,16 @@ SentenceBiLSTM_CRF(
 
 **Loss Function** : We minimize the negative log-likelihood from the CRF.  
 
+## **Evaluation Metrics**
+
+We computed:
+- Accuracy
+- Precision
+- Recall
+- F1-score (macro + weighted)
+- Per-label detailed report
+
+
 
 ## 4. Baseline Performance
 
@@ -80,26 +102,28 @@ SentenceBiLSTM_CRF(
 ## 5. Improved Model Performance
 
 ### Development Set
-| Class | Precision | Recall | F1 | Support |
-|--------|-----------|--------|------|---------|
+| Class | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :--- | :--- | :--- |
 | BACKGROUND | 0.7759 | 0.8049 | 0.7901 | 3449 |
 | OBJECTIVE | 0.7272 | 0.6831 | 0.7044 | 2376 |
 | METHODS | 0.9530 | 0.9667 | 0.9598 | 9964 |
 | RESULTS | 0.9522 | 0.9525 | 0.9524 | 9841 |
 | CONCLUSIONS | 0.9600 | 0.9323 | 0.9460 | 4582 |
-| **Accuracy** | **0.9161** | |
-| **Macro-F1** | **0.8705** | |
+| **Accuracy** | | | **0.9161** | 30212 |
+| **Macro Avg** | 0.8736 | 0.8679 | **0.8705** | 30212 |
+| **Weighted Avg**| 0.9158 | 0.9161 | 0.9158 | 30212 |
 
 ### Test Set
-| Class | Precision | Recall | F1 | Support |
-|--------|-----------|--------|------|---------|
+| Class | Precision | Recall | F1-Score | Support |
+| :--- | :--- | :--- | :--- | :--- |
 | BACKGROUND | 0.7811 | 0.8031 | 0.7919 | 3621 |
 | OBJECTIVE | 0.7081 | 0.6622 | 0.6844 | 2333 |
 | METHODS | 0.9433 | 0.9683 | 0.9556 | 9897 |
 | RESULTS | 0.9554 | 0.9453 | 0.9503 | 9713 |
 | CONCLUSIONS | 0.9632 | 0.9398 | 0.9514 | 4571 |
-| **Accuracy** | **0.9130** |
-| **Macro-F1** | **0.8667** |
+| **Accuracy** | | | **0.9130** | 30135 |
+| **Macro Avg** | 0.8702 | 0.8638 | **0.8667** | 30135 |
+| **Weighted Avg**| 0.9125 | 0.9130 | 0.9126 | 30135 |
 
 ---
 
@@ -111,7 +135,9 @@ SentenceBiLSTM_CRF(
 | Dev Macro-F1 | 0.8381 | **0.8705** | **+3.4** |
 | Test Accuracy | 0.8885 | **0.9130** | **+2.5** |
 
----
+---  
+
+
 
 ## 7. Error Analysis
 
@@ -148,5 +174,22 @@ SentenceBiLSTM_CRF(
 
 ## 8. Notebook
 Implementation lives in: ```cis5300_project/notebooks/Final_Extension_BILSTM_section_classification.ipynb```   
+
+## How to run it:
+
+To run it:
+
+1. Upload/open the notebook in **Google Colab**  
+2. Go to **Runtime → Change runtime type → GPU**  
+3. Run all cells sequentially  
+4. The notebook performs:
+   - Data loading  
+   - Preprocessing  
+   - Model construction  
+   - Training  
+   - Saving model  
+   - Evaluation (dev + test sets)
+
+No `.py` files are used, everything is self-contained in the notebook.
 
 Run on Google Colab with GPU acceleration.
