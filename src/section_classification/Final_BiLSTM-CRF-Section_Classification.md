@@ -39,13 +39,16 @@ SentenceBiLSTM_CRF(
 ## 2. Extended / Improved Model Architecture
 
 ### Improvements Made
-- Embedding dimension **100 → 300**
-- Dropout **0.35** added on embeddings + LSTM outputs
-- LSTM layers **1 → 2**
-- Learning-rate scheduler: **ReduceLROnPlateau**
-- Gradient clipping enabled
-- Early stopping on **dev macro-F1**
+- Increased embedding dimension **100 → 300** for richer token semantics  
+- Added dropout **0.35** on both embedding output and LSTM output  
+- Increased LSTM depth **1 → 2 layers**  
+- Added **learning-rate scheduler (ReduceLROnPlateau)** to escape plateaus  
+- Enabled **gradient clipping (max_norm=1.0)** to avoid exploding gradients  
+- Added **early stopping** based on dev Macro-F1 (patience=3)  
+- Trained up to **15 epochs**, but early stopping usually triggered around epoch 10  
+- Final hidden size = **256** (BiLSTM 128×2)  
 
+---
 **Improved model printout:**
 
 ```python
@@ -61,19 +64,21 @@ SentenceBiLSTM_CRF(
 ## 3. Training Setup
 
 ### Hyperparameters
+
 | Parameter | Baseline | Improved |
 |----------|----------|----------|
-| Embedding Dim | 100 | **300** |
-| LSTM Layers | 1 | **2** |
-| LSTM Dropout | 0 | **0.35** |
-| Extra Dropout Layer | No | **Yes** |
-| LR Scheduler | No | **Yes** |
-| Gradient Clipping | No | **Yes** |
-| Early Stopping | No | **Yes** |
-| Hidden Size | 128 | 128 |
-| Optimizer | Adam | Adam |
-| Batch Size | 32 | 32 |
-| Epochs | 3–5 | Up to 10 |
+| **Embedding Dim** | 100 | **300** |
+| **LSTM Layers** | 1 | **2** |
+| **LSTM Hidden Dim** | 128 | **128 (256 bidirectional)** |
+| **Dropout** | 0 | **0.35 (embedding + LSTM)** |
+| **Extra Dropout Layer** | No | **Yes** |
+| **Optimizer** | Adam | Adam |
+| **Learning Rate** | 0.001 fixed | **0.001 + ReduceLROnPlateau** |
+| **LR Scheduler** | No | **Yes (factor=0.5, patience=3)** |
+| **Gradient Clipping** | No | **Yes (max_norm=1.0)** |
+| **Early Stopping** | No | **Yes (patience=3)** |
+| **Batch Size** | 32 | 32 |
+| **Epochs** | 3–5 | **Up to 15 (early stop ~10)** |
 
 ---
 
